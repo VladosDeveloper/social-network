@@ -10,6 +10,14 @@ export const Main: React.FC = () => {
       <MyPosts>My posts</MyPosts>
       <NewPosts>New post</NewPosts>
       <AllPosts>New post</AllPosts>
+      <AllPosts>New post</AllPosts>
+      <AllPosts>New post</AllPosts>
+      <AllPosts>New post</AllPosts>
+      <AllPosts>New post</AllPosts>
+      <AllPosts>New post</AllPosts>
+      <AllPosts>New post</AllPosts>
+      <AllPosts>New post</AllPosts>
+      <AllPosts>New post</AllPosts>
     </StyledMain>
   );
 };
