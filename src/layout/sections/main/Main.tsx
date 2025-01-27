@@ -1,31 +1,26 @@
-import React from "react";
+import { Profile } from "../pages/mainProfile/Profile.tsx";
+import { Dialogs } from "../pages/dialogs/Dialogs.tsx";
 import styled from "styled-components";
-import venecia from "../../../assets/main.webp";
+import { Route, Routes } from "react-router-dom";
+import { Settings } from "../pages/settings/Settings.tsx";
+import { News } from "../pages/news/News.tsx";
+import { Music } from "../pages/music/Music.tsx";
 
-export const Main: React.FC = () => {
+export const Main = () => {
   return (
     <StyledMain>
-      <Image src={venecia} alt="" />
-      <InfoBlock>Ava + info</InfoBlock>
-      <MyPosts>My posts</MyPosts>
-      <NewPosts>New post</NewPosts>
-      <AllPosts>New post</AllPosts>
+      <Routes>
+        <Route path="/profile/*" element={<Profile />} />
+        <Route path="/dialogs/*" element={<Dialogs />} />
+        <Route path="/settings/*" element={<Settings />} />
+        <Route path="/news/*" element={<News />} />
+        <Route path="/music/*" element={<Music />} />
+      </Routes>
     </StyledMain>
   );
 };
-
-const Image = styled.img`
-  width: 100%;
-  height: 100px;
-  object-fit: cover;
-`;
 
 const StyledMain = styled.main`
   grid-area: main;
   background-color: #67c4ef;
 `;
-
-const InfoBlock = styled.div``;
-const MyPosts = styled.div``;
-const NewPosts = styled.div``;
-const AllPosts = styled.div``;
