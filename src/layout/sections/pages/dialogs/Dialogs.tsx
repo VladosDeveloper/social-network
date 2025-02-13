@@ -1,39 +1,42 @@
 import styled from "styled-components";
-import { NavLink } from "react-router-dom";
+import { DialogItems } from "./dialogItem/DialogItems.tsx";
+import { Messages } from "./messages/Messages.tsx";
 
-export const Dialogs = () => {
+export type DialogsDataType = {
+  id: number;
+  name: string;
+};
+
+export type MessagesDataType = {
+  id: number;
+  text: string;
+};
+
+type DialogsPropsType = {
+  dialogsData: DialogsDataType[];
+  messagesData: MessagesDataType[];
+};
+
+export const Dialogs = (props: DialogsPropsType) => {
+  const { dialogsData, messagesData } = props;
   return (
     <StyledDialogs>
       <h2>Dialogs</h2>
 
       <GridWrapper>
         {/*Dialog list column*/}
-        <DialogList>
-          <DialogItem>
-            <DialogNavLink to="/dialogs/1">Vlad</DialogNavLink>
-          </DialogItem>
-          <DialogItem>
-            <DialogNavLink to="/dialogs/2">Yura</DialogNavLink>
-          </DialogItem>
-          <DialogItem>
-            <DialogNavLink to="/dialogs/3">Kirill</DialogNavLink>
-          </DialogItem>
-          <DialogItem>
-            <DialogNavLink to="/dialogs/4">Lisa</DialogNavLink>
-          </DialogItem>
-          <DialogItem>
-            <DialogNavLink to="/dialogs/5">Veronika</DialogNavLink>
-          </DialogItem>
-        </DialogList>
+        <DialogsBlock>
+          {dialogsData.map((dialog) => (
+            <DialogItems key={dialog.id} name={dialog.name} id={dialog.id} />
+          ))}
+        </DialogsBlock>
 
         {/*Conversation column*/}
-        <Messages>
-          <Message>Hi</Message>
-          <Message>How are you</Message>
-          <Message>Be creative</Message>
-          <Message>Smile enough</Message>
-          <Message>Looking for yourself</Message>
-        </Messages>
+        <MessagesBlock>
+          {messagesData.map((item) => (
+            <Messages key={item.id} message={item.text} />
+          ))}
+        </MessagesBlock>
       </GridWrapper>
     </StyledDialogs>
   );
@@ -49,24 +52,7 @@ const GridWrapper = styled.section`
 `;
 
 // Dialogs
-const DialogList = styled.div`
-  margin-top: 30px;
-`;
-const DialogItem = styled.div`
-  padding: 5px;
-`;
-
-const DialogNavLink = styled(NavLink)`
-    &.active {
-        font-weight: 500;
-
-        &::before {
-            content: " > ";
-        }
-`;
+const DialogsBlock = styled.div``;
 
 // Messages
-const Messages = styled.div``;
-const Message = styled.div`
-  padding: 5px;
-`;
+const MessagesBlock = styled.div``;

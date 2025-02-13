@@ -1,25 +1,21 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
-type NavBarDataPropsType = {
+export type NavBarDataPropsType = {
   to: string;
   title: string;
   id: number;
 };
 
-const NavBarData: NavBarDataPropsType[] = [
-  { id: 1, to: "/profile", title: "Profile" },
-  { id: 2, to: "/dialogs", title: "Messages" },
-  { id: 3, to: "/news", title: "News" },
-  { id: 4, to: "/music", title: "Music" },
-  { id: 5, to: "/settings", title: "Settings" },
-];
+type NavBarPropsType = {
+  navBarData: NavBarDataPropsType[];
+};
 
-export const NavBar = () => {
+export const NavBar = ({ navBarData }: NavBarPropsType) => {
   return (
     <StyledNavBar>
       <ul>
-        {NavBarData.map((item) => {
+        {navBarData.map((item) => {
           return (
             <NavBarItem key={item.id}>
               <NavBarLink to={`${item.to}`}>{item.title}</NavBarLink>

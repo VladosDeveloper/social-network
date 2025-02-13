@@ -1,7 +1,17 @@
 import styled from "styled-components";
 import { Post } from "./post/Post.tsx";
 
-export const Posts = () => {
+export type ShowPostsType = {
+  id: number;
+  text: string;
+  likes: number;
+};
+
+type PostsPropsType = {
+  postsData: ShowPostsType[];
+};
+
+export const Posts = ({ postsData }: PostsPropsType) => {
   return (
     <StyledPost>
       <PostsBlock>
@@ -11,15 +21,26 @@ export const Posts = () => {
           <button>Add new post</button>
         </NewPosts>
         <AllPosts>
-          <Post text={"I'm learning react"} likes={44} />
-          <Post text={"I'm going to walk in evening"} likes={96} />
+          {postsData.map((el) => (
+            <Post key={el.id} text={el.text} likes={el.likes} />
+          ))}
         </AllPosts>
       </PostsBlock>
     </StyledPost>
   );
 };
-const StyledPost = styled.div``;
+
+// Styles
+const StyledPost = styled.section`
+  padding: 10px;
+`;
 const PostsBlock = styled.div``;
-const MyPosts = styled.div``;
-const NewPosts = styled.div``;
+const MyPosts = styled.h3``;
+const NewPosts = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+  margin: 10px 0;
+`;
 const AllPosts = styled.div``;
